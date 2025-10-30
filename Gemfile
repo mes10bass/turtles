@@ -52,16 +52,16 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem 'rspec-rails'
-  gem 'rubocop', require: false
-  gem 'rubocop-capybara', require: false
-  gem 'rubocop-factory_bot', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
-  gem 'rubocop-rake', require: false
-  gem 'rubocop-rspec', require: false
-  gem 'rubocop-rspec_rails', require: false
-  gem 'rubocop-thread_safety', require: false
+  gem "rspec-rails"
+  gem "rubocop", require: false
+  gem "rubocop-capybara", require: false
+  gem "rubocop-factory_bot", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rake", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
+  gem "rubocop-thread_safety", require: false
 end
 
 group :development do
@@ -70,7 +70,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', require: false
-  gem 'rspec_junit_formatter', require: false
-  gem 'simplecov', require: false
+  gem "capybara", require: false
+  gem "rspec_junit_formatter", require: false
+  gem "simplecov", require: false
 end
