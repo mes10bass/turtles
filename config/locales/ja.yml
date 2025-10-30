@@ -1,0 +1,12 @@
+---
+ja:
+  activerecord:
+    models:
+    attributes:
+      base: &base
+        id: ID
+        type: 種別
+        created_at: 作成日時
+        updated_at: 更新日時
+        attributes: 属性
+        _destroy: 除外
