@@ -1,0 +1,65 @@
+<% content_for :title, "ToDo管理" %>
+
+<div class="space-y-6">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h1 class="text-3xl font-semibold text-slate-900">ToDo一覧</h1>
+      <p class="text-sm text-slate-500">自分のタスクを確認・更新できます。</p>
+    </div>
+    <%= link_to "ToDoを追加", new_todo_path, class: "inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+
+  <% if @todos.any? %>
+    <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+      <table class="min-w-full divide-y divide-slate-200">
+        <thead class="bg-slate-50 text-left text-sm font-semibold text-slate-600">
+          <tr>
+            <th scope="col" class="px-6 py-3">タイトル</th>
+            <th scope="col" class="px-6 py-3">期間</th>
+            <th scope="col" class="px-6 py-3">状態</th>
+            <th scope="col" class="px-6 py-3">更新日</th>
+            <th scope="col" class="px-6 py-3 text-right">操作</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 bg-white text-sm text-slate-700">
+          <% @todos.each do |todo| %>
+            <tr id="<%= dom_id(todo) %>">
+              <td class="px-6 py-4 align-top">
+                <p class="font-medium text-slate-900"><%= todo.title %></p>
+                <p class="text-xs text-slate-500 truncate"><%= todo.content.truncate(60) %></p>
+              </td>
+              <td class="px-6 py-4 align-top whitespace-nowrap text-slate-600">
+                <% if todo.start_on.present? || todo.end_on.present? %>
+                  <%= [todo.start_on, todo.end_on].compact.map { _1&.strftime('%Y/%m/%d') }.join(' 〜 ') %>
+                <% else %>
+                  <span class="text-slate-400">未設定</span>
+                <% end %>
+              </td>
+              <td class="px-6 py-4 align-top">
+                <% if todo.is_finished? %>
+                  <span class="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">完了</span>
+                <% else %>
+                  <span class="inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">進行中</span>
+                <% end %>
+              </td>
+              <td class="px-6 py-4 align-top whitespace-nowrap text-slate-500">
+                <%= l todo.updated_at, format: :long %>
+              </td>
+              <td class="px-6 py-4 align-top">
+                <div class="flex justify-end gap-2">
+                  <%= link_to "詳細", todo, class: "inline-flex items-center justify-center rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900" %>
+                  <%= link_to "編集", edit_todo_path(todo), class: "inline-flex items-center justify-center rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900" %>
+                  <%= button_to "削除", todo, method: :delete, data: { turbo_confirm: "ToDoを削除しますか？" }, class: "inline-flex items-center justify-center rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-red-500" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="rounded-xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center">
+      <p class="text-sm text-slate-600">登録済みのToDoはありません。「ToDoを追加」から作成してください。</p>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,48 @@
+<%= render "devise/shared/error_messages", resource: todo %>
+
+<%= form_with(model: todo, class: "space-y-6") do |form| %>
+  <div class="space-y-2">
+    <%= form.label :title, "タイトル", class: "block text-sm font-medium text-slate-700" %>
+    <%= form.text_field :title, class: [
+          "mt-1 block w-full rounded-lg border bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+          { "border-slate-300": todo.errors[:title].none?, "border-red-400 focus:border-red-500 focus:ring-red-500": todo.errors[:title].any? }
+        ] %>
+  </div>
+
+  <div class="space-y-2">
+    <%= form.label :content, "内容", class: "block text-sm font-medium text-slate-700" %>
+    <%= form.text_area :content, rows: 5, class: [
+          "mt-1 block w-full rounded-lg border bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+          { "border-slate-300": todo.errors[:content].none?, "border-red-400 focus:border-red-500 focus:ring-red-500": todo.errors[:content].any? }
+        ] %>
+  </div>
+
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div class="space-y-2">
+      <%= form.label :start_on, "開始日", class: "block text-sm font-medium text-slate-700" %>
+      <%= form.date_field :start_on, class: [
+            "mt-1 block w-full rounded-lg border bg-white px-3 py-2 text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+            { "border-slate-300": todo.errors[:start_on].none?, "border-red-400 focus:border-red-500 focus:ring-red-500": todo.errors[:start_on].any? }
+          ] %>
+    </div>
+    <div class="space-y-2">
+      <%= form.label :end_on, "終了日", class: "block text-sm font-medium text-slate-700" %>
+      <%= form.date_field :end_on, class: [
+            "mt-1 block w-full rounded-lg border bg-white px-3 py-2 text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+            { "border-slate-300": todo.errors[:end_on].none?, "border-red-400 focus:border-red-500 focus:ring-red-500": todo.errors[:end_on].any? }
+          ] %>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+    <div>
+      <p class="text-sm font-medium text-slate-700">完了フラグ</p>
+      <p class="text-xs text-slate-500">完了済みの場合はチェックを入れてください。</p>
+    </div>
+    <%= form.check_box :is_finished, class: "h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" %>
+  </div>
+
+  <div>
+    <%= form.submit (todo.new_record? ? "登録する" : "更新する"), class: "inline-flex w-full justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>
