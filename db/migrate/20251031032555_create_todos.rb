@@ -6,7 +6,7 @@ class CreateTodos < ActiveRecord::Migration[8.1]
       t.text :content, null: false
       t.date :start_on
       t.date :end_on
-      t.boolean :is_finished, null: false, default: true
+      t.boolean :is_finished, null: false, default: false
 
       t.timestamps
     end

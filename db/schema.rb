@@ -15,7 +15,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_31_032555) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.date "end_on"
-    t.boolean "is_finished", default: true, null: false
+    t.boolean "is_finished", default: false, null: false
     t.date "start_on"
     t.string "title", null: false
     t.datetime "updated_at", null: false
