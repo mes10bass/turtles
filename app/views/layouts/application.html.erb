@@ -23,14 +23,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-slate-50">
     <% if notice.present? %>
       <p class="notice"><%= notice %></p>
     <% end %>
     <% if alert.present? %>
       <p class="alert"><%= alert %></p>
     <% end %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="w-full px-8 mt-20">
       <%= yield %>
     </main>
   </body>

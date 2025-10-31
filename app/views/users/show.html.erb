@@ -1,0 +1,23 @@
+<% content_for :title, "ユーザー詳細" %>
+
+<div class="space-y-6">
+  <% if notice.present? %>
+    <p class="inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700" id="notice">
+      <span><%= notice %></span>
+    </p>
+  <% end %>
+
+  <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h1 class="text-3xl font-semibold text-slate-900">ユーザー詳細</h1>
+      <p class="text-sm text-slate-500">メールアドレスや登録日時を確認できます。</p>
+    </div>
+    <div class="flex flex-col gap-2 sm:flex-row">
+      <%= link_to "一覧へ戻る", users_path, class: "inline-flex items-center justify-center rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900" %>
+      <%= link_to "編集", edit_user_path(@user), class: "inline-flex items-center justify-center rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900" %>
+      <%= button_to "削除", @user, method: :delete, data: { turbo_confirm: "ユーザーを削除しますか？" }, class: "inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-500" %>
+    </div>
+  </div>
+
+  <%= render @user %>
+</div>
