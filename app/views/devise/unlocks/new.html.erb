@@ -1,0 +1,15 @@
+<%= render "devise/shared/container",
+           resource: resource,
+           title: "ロック解除メールを再送",
+           description: "アカウントロックされた場合は、解除用メールを再送できます。" do %>
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "space-y-6" }) do |f| %>
+    <div class="space-y-2">
+      <%= f.label :email, "メールアドレス", class: "block text-sm font-medium text-slate-700" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+    </div>
+
+    <div>
+      <%= f.submit "解除メールを送信", class: "inline-flex w-full justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<% links = local_assigns.fetch(:links, true) %>
+<div class="mx-auto w-full max-w-md space-y-8">
+  <div class="space-y-3 text-center">
+    <h1 class="text-3xl font-semibold text-slate-900"><%= title %></h1>
+    <% if description.present? %>
+      <p class="text-sm text-slate-500"><%= description %></p>
+    <% end %>
+  </div>
+
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="space-y-6">
+    <%= yield %>
+  </div>
+
+  <% if links %>
+    <%= render "devise/shared/links" %>
+  <% end %>
+</div>
